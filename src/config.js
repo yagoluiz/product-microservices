@@ -4,4 +4,4 @@ module.exports = {
     user: 'postgres',
     database: 'store',
     password: 'admin'
-}
+};

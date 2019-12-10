@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package discount;
+
+service DiscountService {
+  rpc GetDiscount (DiscountRequest) returns (DiscountResponse);
+}
+
+message DiscountRequest {
+  string product_id = 1;
+  string user_id = 2;
+}
+
+message DiscountResponse {
+  float pct = 1;
+  int32 value_in_cents = 2;
+}

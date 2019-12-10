@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Pool = require('pg').Pool;
 const config = require('../../config');
@@ -18,4 +18,4 @@ const getAllProducts = async () => {
 
 module.exports = {
     getAllProducts
-}
+};
