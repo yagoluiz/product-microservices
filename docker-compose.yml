@@ -7,6 +7,8 @@ services:
             context: .
         ports:
             - "5000:80"
+        depends_on:
+            - db-postgres
         networks:
             - microservices-network
 
@@ -16,6 +18,8 @@ services:
             context: .
         ports:
             - "3000:3000"
+        depends_on:
+            - db-postgres
         networks:
             - microservices-network
     
