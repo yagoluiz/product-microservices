@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+    discount-microservices:
+        image: discount-microservices
+        build:
+            context: .
+        ports:
+            - "5000:80"
+        networks:
+            - microservices-network
+
     product-microservices:
         image: product-microservices
         build:
