@@ -1,12 +1,12 @@
 'use strict';
 
 const grpc = require('grpc');
+const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
-
-const PROTO_PATH = __dirname + '/../../protos/discount.proto';
+const config = require('../../config');
 
 const packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
+    path.join(__dirname, '/../../protos/discount.proto'),
     {
         keepCase: true,
         longs: String,
@@ -16,22 +16,18 @@ const packageDefinition = protoLoader.loadSync(
     }
 );
 
-const discountProto = grpc.loadPackageDefinition(packageDefinition).discount;
+const proto = grpc.loadPackageDefinition(packageDefinition).discount;
 
 const getDiscount = async (productId, userId) => {
     const request = {
         product_id: productId,
         user_id: userId
     };
-    const client = new discountProto.DiscountService('localhost:5000', grpc.credentials.createInsecure());
+    const client = new proto.DiscountService(config.discount_grpc.host, grpc.credentials.createInsecure());
 
     return new Promise(function (resolve, reject) {
-        client.getDiscount(request, (_err, res) => {
-            if (_err) {
-                reject(_err);
-            } else {
-                resolve(res);
-            }
+        client.getDiscount(request, (err, res) => {
+            err ? reject(err) : resolve(res);
         });
     });
 }

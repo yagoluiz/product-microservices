@@ -4,11 +4,11 @@ const Pool = require('pg').Pool;
 const config = require('../../config');
 
 const pool = new Pool({
-    host: config.host,
-    port: config.port,
-    user: config.user,
-    database: config.database,
-    password: config.password
+    host: config.store_database.host,
+    port: config.store_database.port,
+    user: config.store_database.user,
+    database: config.store_database.database,
+    password: config.store_database.password
 });
 
 const getAllProducts = async () => {

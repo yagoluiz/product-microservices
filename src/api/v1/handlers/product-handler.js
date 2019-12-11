@@ -3,14 +3,12 @@
 const repository = require('../../../infrastructure/repositories/product-repository');
 const service = require('../../../infrastructure/services/discount-service');
 
-const getAllProducts = async (req, res) => {
-    const userId = req.headers['x-user-id'];
+const getAllProducts = async (userId) => {
     const products = await repository.getAllProducts();
 
     if (products != null && userId != undefined) {
         for (const product of products) {
-            const productId = product.id;
-            const discount = await service.getDiscount(productId, userId);
+            const discount = await service.getDiscount(product.id, userId);
             if (discount != undefined) {
                 product.discount = {
                     pct: discount.pct,
@@ -20,7 +18,7 @@ const getAllProducts = async (req, res) => {
         }
     }
 
-    res.status(200).send(products);
+    return products;
 }
 
 module.exports = {
