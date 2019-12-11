@@ -7,7 +7,7 @@ const getAllProducts = async (userId) => {
     const products = await repository.getAllProducts();
 
     if (products != null && userId != undefined) {
-        for (const product of products) {
+        const promises = products.map(async (product) => {
             const discount = await service.getDiscount(product.id, userId);
             if (discount != undefined) {
                 product.discount = {
@@ -15,7 +15,9 @@ const getAllProducts = async (userId) => {
                     value_in_cents: discount.value_in_cents
                 };
             }
-        }
+        });
+
+        await Promise.all(promises);
     }
 
     return products;
