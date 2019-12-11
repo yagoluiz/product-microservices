@@ -1,0 +1,36 @@
+{
+  "name": "product-microservices",
+  "version": "1.0.0",
+  "description": "Comunication microservices using gRPC",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./bin/server.js",
+    "test": "jest"
+  },
+  "jest": {
+    "roots": [
+      "test"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yagoluiz/product-microservices.git"
+  },
+  "author": "Yago Luiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yagoluiz/product-microservices/issues"
+  },
+  "homepage": "https://github.com/yagoluiz/product-microservices#readme",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "grpc": "^1.24.2",
+    "pg": "^7.14.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.1"
+  }
+}
