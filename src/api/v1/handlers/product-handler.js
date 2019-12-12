@@ -1,5 +1,6 @@
 'use strict';
 
+const log = require('simple-node-logger').createSimpleLogger();
 const repository = require('../../../infrastructure/repositories/product-repository');
 const service = require('../../../infrastructure/services/discount-service');
 
@@ -8,7 +9,7 @@ const getAllProducts = async (userId) => {
 
     if (products != null && userId != undefined) {
         const promises = products.map(async (product) => {
-            const discount = await service.getDiscount(product.id, userId);
+            const discount = await service.getDiscount(product.id, userId).catch((err) => log.error(`Discount service => ${err}`));
             if (discount != undefined) {
                 product.discount = {
                     pct: discount.pct,

@@ -23,26 +23,23 @@ test('should products to be not discount', async () => {
 });
 
 test('should products to be discount', async () => {
+    const discountMock = {
+        pct: 10,
+        value_in_cents: 100
+    };
     const productsMock = [
         {
             id: '7f4507db-f549-4ddb-a216-440386a63e88',
             price_in_cents: 1000,
             title: 'Title mock',
             description: 'Description mock',
-            discount: {
-                pct: 10,
-                value_in_cents: 100
-            }
+            discount: discountMock
         }
     ];
-    const discountMock = {
-        pct: 10,
-        value_in_cents: 100
-    };
     const userIdMock = 'd38e883d-6ee4-4d06-b9ed-8fc26f2a934d';
 
     repository.getAllProducts = jest.fn().mockReturnValue(productsMock);
-    service.getDiscount = jest.fn().mockReturnValue(discountMock);
+    service.getDiscount = jest.fn().mockImplementationOnce(() => Promise.resolve(discountMock));
 
     const products = await handler.getAllProducts(userIdMock);
 
