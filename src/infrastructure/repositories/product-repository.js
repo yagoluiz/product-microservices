@@ -4,7 +4,7 @@ const Pool = require('pg').Pool;
 const config = require('../../config');
 
 const pool = new Pool({
-    host: process.env.DATABASE_HOST || config.store_database.host,
+    host: config.store_database.host,
     port: config.store_database.port,
     user: config.store_database.user,
     database: config.store_database.database,

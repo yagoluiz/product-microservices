@@ -1,12 +1,12 @@
 module.exports = {
     store_database: {
-        host: 'localhost',
+        host: process.env.DATABASE_HOST || 'localhost',
         port: 5432,
         user: 'postgres',
         database: 'store',
         password: 'admin'
     },
     discount_grpc: {
-        host: 'localhost:5000'
+        host: process.env.DISCOUNT_HOST || 'localhost:5000'
     }
 };
