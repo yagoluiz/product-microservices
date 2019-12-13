@@ -1,5 +1,7 @@
 # Product - Microservices
 
+![](https://github.com/yagoluiz/product-microservices/workflows/Docker%20Image%20CI/badge.svg)
+
 Microservice responsible for listing discounted products via gRPC [discount microservice](https://github.com/yagoluiz/discount-microservices).
 
 ## Data information
