@@ -23,7 +23,7 @@ const getDiscount = async (productId, userId) => {
         product_id: productId,
         user_id: userId
     };
-    const client = new proto.DiscountService(config.discount_grpc.host, grpc.credentials.createInsecure());
+    const client = new proto.DiscountService(process.env.DISCOUNT_HOST || config.discount_grpc.host, grpc.credentials.createInsecure());
 
     return new Promise(function (resolve, reject) {
         client.getDiscount(request, (err, res) => {
